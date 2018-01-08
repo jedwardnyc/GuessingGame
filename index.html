@@ -4,12 +4,12 @@
     <title>Guessing Game</title>
 
     <!-- Bootstrap and CSS here-->
-    <link rel="stylesheet" type='text/css' href="style.css">
-    <link rel="stylesheet" type='text/css' href='bootstrap.css'>
+    <link rel="stylesheet" type='text/css' href="css/style.css">
+    <link rel="stylesheet" type='text/css' href='css/bootstrap.css'>
   </head>
   <body>
 
-      <div id='app' class='container center'>
+      <div id='app' class='container-fluid center'>
 
         <div id='headers'>
           <h1 id='title'>Here's a little game for you!</h1>
@@ -46,15 +46,15 @@
     <div id='footer' class='center'>
         <div class='row'>
           <div class='col-sm-4'>
-            <img src='fa-logo@2x.png'></img>
+            <img src='img/fa-logo@2x.png'></img>
           </div>
 
-          <div class='col-sm-4'>
+          <div id='fs' class='col-sm-4'>
             <h4>Project by Jacob Rico</h4>
           </div>
 
-          <div class='col-sm-4'>
-            <img src='grace_hopper_academy.png'></img>
+          <div id='grace' class='col-sm-4'>
+            <img src='img/grace_hopper_academy.png'></img>
           </div>
 
 
@@ -62,4 +62,6 @@
     </div>
 
   </body>
+  <script src='js/jquery-3.2.1.js'></script>
+  <script src='js/GuessingGame.js'></script>
 </html>

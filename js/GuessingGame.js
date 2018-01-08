@@ -44,6 +44,8 @@ Game.prototype.playersGuessSubmission = function(num){
 Game.prototype.checkGuess = function() {
 
     if(this.winningNumber === this.playersGuess){
+        $('#submit, #hint').prop("disabled",true);
+        $('#subtitle').text("Please hit the reset button to play again!")
         return 'You Win!';
     } else {
         if(this.pastGuesses.indexOf(this.playersGuess) > -1){
@@ -51,7 +53,11 @@ Game.prototype.checkGuess = function() {
         }
         else {
             this.pastGuesses.push(this.playersGuess);
+            $('#guess-list li:nth-child('+ this.pastGuesses.length +')').text(this.playersGuess);
+
             if(this.pastGuesses.length === 5){
+                $('#submit, #hint').prop("disabled",true);
+                $('#subtitle').text("Please hit the reset button to play again!")
                 return 'You Lose.';
             }
             else {
@@ -79,4 +85,34 @@ Game.prototype.provideHint = function() {
     return shuffle(hints);
 }
 
+function takeGuess(game){
+    var val = +$('#player-input').val();
+        $('#player-input').val('');
+       result = game.playersGuessSubmission(val);
+        $('#title').text(result)
+}
+$(document).ready(function(){
+    game = newGame();
+    $('#submit').on('click',function(){
+        takeGuess(game);
+
+    });
+    $('#player-input').on('keypress', function(event){
+        if(event.which == 13){
+            takeGuess(game);
+        }
+    });
+    $('#reset').on('click', function(){
+        game = newGame();
+        $('#title').text("Here's a little game for you!");
+        $('#subtitle').text('Please guess a number between 1-100');
+        $('#guess-list li').text('-');
+        $('#hint, #submit').prop("disabled", false);
+    });
+    $('#hint').on('click',function(){
+        var hints = game.provideHint();
+        $('#title').text('Here are some hints: '+hints[0]+' - '+hints[1]+' - '+hints[2]+'.')
+    });
+    
+});
 
